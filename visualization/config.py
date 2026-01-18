@@ -1,0 +1,16 @@
+## Simulation settings
+N = 64
+MAX_VOXELS = N**3
+VOXEL_WIDTH = 0.4
+VOXEL_DISTANCE = 0.2
+
+# window settings
+SCREEN_RESOLUTION = (800, 600)
+FPS_LIMIT = 60
+MEMORY_LIMIT_GB = 2
+
+#colors
+CUBE_COLOR = (0.2, 0.8, 1.0)
+BG_COLOR = (0.1, 0.1, 0.1)
+LIGHT_COLOR = (1, 1, 1)
+AMBIENT_COLOR = (0.2, 0.2, 0.2)
