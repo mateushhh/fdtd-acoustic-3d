@@ -1,16 +1,26 @@
 ## Simulation settings
-N = 64
+N = 64 # Dla testów polecam zmniejszenie na 32 czy nawet 16
 MAX_VOXELS = N**3
-VOXEL_WIDTH = 0.4
-VOXEL_DISTANCE = 0.2
+VOXEL_WIDTH = 1
+VOXEL_DISTANCE = 1
+DELTA_TIME = 0.05
+PARTICLE_RADIUS = 1
+PRESSURE_TRESHOLD = 0.25 # Noise Gate, nie wyświetlamy powietrza z ciśnieniem poniżej abs(0.25)
 
-# window settings
+# Window settings
 SCREEN_RESOLUTION = (800, 600)
 FPS_LIMIT = 60
 MEMORY_LIMIT_GB = 2
 
-#colors
-CUBE_COLOR = (0.2, 0.8, 1.0)
-BG_COLOR = (0.1, 0.1, 0.1)
+# Camera settings
+CAMERA_POS_X, CAMERA_POS_Y, CAMERA_POS_Z = N*1.5, N*1.5, N*1.5
+CAMERA_LOOKAT_X, CAMERA_LOOKAT_Y, CAMERA_LOOKAT_Z = 0, 0, 0
+
+# Colors
+CUBE_COLOR = (0.5, 0.5, 0.5)
+BG_COLOR = (1.0, 1.0, 1.0)
 LIGHT_COLOR = (1, 1, 1)
-AMBIENT_COLOR = (0.2, 0.2, 0.2)
+AMBIENT_COLOR = (1.0, 1.0, 1.0)
+
+# Temporary (just for test visualisation)
+SOURCE_POS = (N/2 * VOXEL_DISTANCE, N/2 * VOXEL_DISTANCE, N/2 * VOXEL_DISTANCE)
