@@ -65,19 +65,18 @@ class Simulation:
                     [0.0, 0.0, 0.0, 1.0]
                 ])
             else:
-                index = ti.atomic_add(self.particle_count[None], 1)
-
-                # Generowanie próbnej fali (dla przykładu jest statyczna)
+                # Generowanie próbnej fali
                 current_pos = ti.Vector([x,y,z])
                 distance_from_source = (current_pos - source).norm()
 
                 # Wartość wygenerowanej fali w punkcie (obliczona strata na podstawie przesunięcia w czasie i dystansie)
                 # skalary tutaj to testowe wartości
-                wave_val = ti.sin(distance_from_source)
+                wave_val = ti.sin(current_t - distance_from_source * 0.5)
                 pressure = wave_val / (distance_from_source * 0.1 + 1.0)
 
                 if y == config.N / 2: # Tymczasowa wizualizacja na płaszczyźnie y
                     if ti.abs(pressure) > config.PRESSURE_TRESHOLD:
+                        index = ti.atomic_add(self.particle_count[None], 1)
                         r, g, b = 0.0, 0.0, 0.0
                         if pressure > 0.0:
                             r = ti.abs(pressure)
