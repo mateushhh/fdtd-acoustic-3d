@@ -90,7 +90,7 @@ def step(p_prev: ti.template(), p_now: ti.template(), steps: int):
         if k_field[i , j] > 0:
             k_val = k_field[i,j]
             bk_val = bk_field[i,j]
-            w1 =(2.0 - float(k_val) * COURANT_SQ) * p_now[i, j]
+            w1 = (2.0 - float(k_val) * COURANT_SQ) * p_now[i, j]
             w2 = (bk_val - 1.0) * p_prev[i, j]
             w3 = COURANT_SQ * (p_now[i + 1, j] + p_now[i - 1, j] + p_now[i, j + 1] + p_now[i, j - 1])
             p_prev[i, j] = (w1 + w2 + w3) / (1 + bk_val)
@@ -116,7 +116,11 @@ def main():
     alpha_map = alpha_field.to_numpy()
     is_wall = alpha_map < 0.99
 
+    is_paused = False
     while gui.running:
+        if gui.get_event(ti.GUI.PRESS):
+            if gui.event.key == ti.GUI.SPACE:
+                is_paused = not is_paused
 
         now = time.time()
         delta_real_time = now - prev_time
@@ -124,11 +128,11 @@ def main():
 
         accumulator+=delta_real_time
         if(accumulator >= frame_duration):
-            steps += 1
-            b_old = steps % 2
-            b_curr = (steps + 1) % 2
-
-            step(buffers[b_old], buffers[b_curr], steps)
+            if not is_paused:
+                steps += 1
+                b_old = steps % 2
+                b_curr = (steps + 1) % 2
+                step(buffers[b_old], buffers[b_curr], steps)
 
             p_np = buffers[b_old].to_numpy()
             max_val = np.abs(p_np).max()
@@ -146,7 +150,6 @@ def main():
 
             gui.set_image(img)
             gui.show()
-
 
             accumulator = 0
 
