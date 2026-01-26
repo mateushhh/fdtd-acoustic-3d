@@ -84,11 +84,11 @@ class Simulation:
 
                 """
                 Tymczasowa wizualizacja na płaszczyźnie y
-                Sprawdzenie czy wartość ciśnienia jest powyżej progu bramki szumów "config.PRESSURE_TRESHOLD"
+                Sprawdzenie czy wartość ciśnienia jest powyżej progu bramki szumów "config.PRESSURE_THRESHOLD"
                 """
                 is_visible = False
                 if j <= config.N // 2:
-                    if ti.abs(pressure) >= config.PRESSURE_TRESHOLD:
+                    if ti.abs(pressure) >= config.PRESSURE_THRESHOLD:
                         is_visible = True
 
                 if is_visible:
