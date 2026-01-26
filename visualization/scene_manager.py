@@ -42,7 +42,7 @@ class SceneRenderer:
             centers = simulation.particle_pos,
             radius = config.PARTICLE_RADIUS,
             per_vertex_color = simulation.particle_colors,
-            index_count = simulation.particle_count[None]
+            index_count = config.MAX_VOXELS
         )
 
         self.canvas.scene(self.scene)
