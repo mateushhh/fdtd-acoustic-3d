@@ -4,7 +4,7 @@ MAX_VOXELS = N**3
 VOXEL_WIDTH = 1
 VOXEL_DISTANCE = 1
 DELTA_TIME = 0.05
-PARTICLE_RADIUS = 1
+PARTICLE_RADIUS = 0.5
 PRESSURE_THRESHOLD = 0.25 # Noise Gate, nie wyświetlamy powietrza z ciśnieniem poniżej abs(0.25)
 
 # Window settings
